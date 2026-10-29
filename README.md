@@ -47,6 +47,9 @@ Dans la section `servers`, ajoutez les informations ci-dessous:
 		<id>central</id>
 		<username>SONATYPE_USERNAME</username>
 		<password>SONATYPE_PASSWORD</password>
+		<repositoryOrigins>
+			<repositoryOrigin>https://central.sonatype.com</repositoryOrigin>
+		</repositoryOrigins>
 	</server>
 </servers>
 ```

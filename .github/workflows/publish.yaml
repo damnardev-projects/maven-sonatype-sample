@@ -27,6 +27,7 @@ jobs:
           java-version: '21'
           cache: 'maven'
           server-id: central
+          mvn-server-repository-origins: central:https://central.sonatype.com
           server-username-env-var: SONATYPE_USERNAME
           server-password-env-var: SONATYPE_PASSWORD
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
