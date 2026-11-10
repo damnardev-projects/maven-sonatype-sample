@@ -1,6 +1,12 @@
 # Maven Sonatype Sample
 
-Ce projet Java sert d'exemple simple pour le déploiement d'un jar sur Sonatype à l'aide de Maven.
+Ce projet Java sert d'exemple pour le déploiement d'un jar sur Sonatype à l'aide de Maven.
+
+## Structure du projet
+
+Ci-dessous, vous trouverez des informations sur les fichiers et répertoires importants du projet.
+
+Le fichier `pom.xml` déclare le projet, la génération des sources et de la Javadoc, ainsi que les profils `sonatype` et `gpg` utilisés pour la publication.
 
 ## Générer la clé GPG
 
@@ -15,7 +21,7 @@ Attention, vous pouvez partager la clé publique sans risque, mais vous ne devez
 
 ## Créer un compte Sonatype
 
-Maintenant que la clé GPG est générée et publiée, créez votre compte Sonatype sur le [site officiel](https://central.sonatype.com/) en cliquant sur le bouton Sign Up.
+Maintenant que la clé GPG est générée et publiée, créez votre compte Sonatype sur le [site officiel](https://central.sonatype.com/) en cliquant sur le bouton `Sign Up`.
 
 ## Créer le namespace
 
@@ -29,17 +35,17 @@ Maintenant que la clé GPG est générée et publiée, créez votre compte Sonat
 
 Il est maintenant temps de générer le token Sonatype afin de l'utiliser depuis Maven. Pour cela, suivez les étapes ci-dessous.
 
-1. Ouvrez la page [user token](https://central.sonatype.com/usertoken) et cliquez sur Generate User Token.
+1. Ouvrez la page [user token](https://central.sonatype.com/usertoken) et cliquez sur `Generate User Token`.
    - Renseignez un nom pour votre token.
    - Renseignez une date d'expiration.
-   - Cliquez sur Create Token.
-2. Sauvegardez en lieu sûr les informations des sections Use the following in your Maven settings.xml, Username, Password et Username : Password (base64).
+   - Cliquez sur `Create Token`.
+2. Sauvegardez en lieu sûr les informations des sections `Use the following in your Maven settings.xml`, `Username`, `Password` et `Username : Password (base64)`.
 
 ## Configurer Maven
 
-Il est maintenant temps de configurer Maven. Ouvrez le fichier `~/.m2/settings.xml` et ajoutez-y les informations de votre token générées lors de l'étape Générer le token ainsi que les détails de votre clé GPG.
+Il est maintenant temps de configurer Maven. Ouvrez le fichier `~/.m2/settings.xml` et ajoutez-y les informations de votre token générées lors de l'étape « Générer le token » ainsi que les détails de votre clé GPG.
 
-Dans la section `servers`, ajoutez les informations ci-dessous:
+Dans la section `servers`, ajoutez les informations ci-dessous :
 
 ```xml
 <servers>
@@ -67,7 +73,7 @@ Puis, dans la section `profiles`, ajoutez le `KEY_ID` de votre clé GPG :
 
 Enfin, créez une variable d'environnement `MAVEN_GPG_PASSPHRASE` contenant la passphrase de votre clé GPG.
 
-## Tester localement
+## Commandes utiles
 
 Vous pouvez tester la publication de vos artefacts depuis votre poste en exécutant la commande suivante :
 
@@ -90,7 +96,7 @@ Si vous spécifiez le profil `sonatype` sans le profil `gpg`, la publication éc
 
 Pour publier les artefacts sur Sonatype, vous pouvez utiliser la GitHub Action `publish`, qui se lance manuellement ou après la création d'une pull request ou d'un merge sur la branche `develop`. Avant de l'exécuter, vous devez configurer les secrets suivants dans votre dépôt GitHub :
 
-- `SONATYPE_USERNAME` : le username généré durant l'étape Générer le token
-- `SONATYPE_PASSWORD` : le password généré durant l'étape Générer le token
+- `SONATYPE_USERNAME` : le username généré durant l'étape « Générer le token »
+- `SONATYPE_PASSWORD` : le password généré durant l'étape « Générer le token »
 - `GPG_PRIVATE_KEY` : votre clé privée GPG exportée avec `gpg --armor --export-secret-keys <KEY_ID>`
 - `GPG_PASSPHRASE` : la passphrase de votre clé GPG
